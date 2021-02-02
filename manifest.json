@@ -1,0 +1,55 @@
+{
+  "manifest_version": 2,
+  "version": "0.0.0.1",
+
+  "name": "FlashBack",
+  "description": "FlashBack will bring Flash Back",
+
+  "icons": {
+    "16": "images/icon16.png",
+    "24": "images/icon24.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "24": "images/icon24.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    },
+    "default_title": "FlashBack",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "permissions": [
+    "clipboardRead",
+    "clipboardWrite",
+    "cookies",
+    "storage",
+    //"tabs",
+    "unlimitedStorage",
+    "*://*/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": [
+        "patch-worker.js",
+        "contentScript.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "workerVM.js"
+  ]
+}
